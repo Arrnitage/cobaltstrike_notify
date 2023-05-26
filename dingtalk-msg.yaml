@@ -1,0 +1,13 @@
+custom:  
+  - id: webhook    
+    custom_webhook_url: https://oapi.dingtalk.com/robot/send?access_token=<TOKEN>
+    custom_method: POST
+    custom_format: |
+      {
+        "text": {
+          "content": "New Beacon:: {{data}}"
+        },
+        "msgtype": "text"
+      }
+    custom_headers:      
+      Content-Type: application/json
